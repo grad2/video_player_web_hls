@@ -141,7 +141,6 @@ class VideoPlayerPluginHls extends VideoPlayerPlatform {
     return _player(textureId).events;
   }
 
-  @override
   Future<void> enterFullScreen(int textureId, bool isEnter) async {
     return _player(textureId).enterFullScreen(isEnter);
   }
