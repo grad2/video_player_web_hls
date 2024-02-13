@@ -141,6 +141,12 @@ class VideoPlayerPluginHls extends VideoPlayerPlatform {
     return _player(textureId).events;
   }
 
+  @override
+  Future<void> enterFullScreen(int textureId, bool isEnter) async {
+    return _player(textureId).enterFullScreen(isEnter);
+  }
+
+
   // Retrieves a [VideoPlayer] by its internal `id`.
   // It must have been created earlier from the [create] method.
   VideoPlayer _player(int id) {
