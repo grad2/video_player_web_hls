@@ -331,10 +331,16 @@ class VideoPlayer {
   }
 
   Future<bool> shouldUseHlsLibrary() async {
-    return true;
+    if(isAndroid()) return true;
+
     return isSupported() &&
         (uri.toString().contains('m3u8') || await _testIfM3u8()) &&
         !canPlayHlsNatively();
+  }
+
+  bool isAndroid() {
+    final userAgent = window.navigator.userAgent.toString().toLowerCase();
+    return userAgent.contains("android");
   }
 
   Future<bool> _testIfM3u8() async {
