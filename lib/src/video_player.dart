@@ -338,6 +338,14 @@ class VideoPlayer {
         !canPlayHlsNatively();
   }
 
+  Future<void> enterFullScreen(bool isEnter) async {
+    if(isEnter){
+      _videoElement.enterFullscreen();
+    }else{
+      _videoElement.exitFullscreen();
+    }
+  }
+
   bool isAndroid() {
     final userAgent = window.navigator.userAgent.toString().toLowerCase();
     return userAgent.contains("android");
