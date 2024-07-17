@@ -339,11 +339,7 @@ class VideoPlayer {
   }
 
   Future<void> enterFullScreen(bool isEnter) async {
-    if(isEnter){
-      _videoElement.enterFullscreen();
-    }else{
-      _videoElement.exitFullscreen();
-    }
+    _videoElement.requestFullscreen();
   }
 
   bool isAndroid() {
