@@ -324,6 +324,10 @@ class VideoPlayer {
     );
   }
 
+  Future<void> enterFullScreen(bool isEnter) async {
+    _videoElement.requestFullscreen();
+  }
+
   /// Caches the current "buffering" state of the video.
   ///
   /// If the current buffering state is different from the previous one
