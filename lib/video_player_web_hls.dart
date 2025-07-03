@@ -104,7 +104,7 @@ class VideoPlayerPluginHls extends VideoPlayerPlatform {
 
   @override
   Future<void> setLooping(int textureId, bool looping) async {
-    return _player(textureId).enterFullScreen(looping);
+    return _player(textureId).setLooping(looping);
   }
 
   @override
@@ -145,6 +145,11 @@ class VideoPlayerPluginHls extends VideoPlayerPlatform {
   @override
   Future<void> setWebOptions(int textureId, VideoPlayerWebOptions options) {
     return _player(textureId).setOptions(options);
+  }
+
+    @override
+  Future<void> enterFullScreen(int textureId) async {
+    return _player(textureId).enterFullScreen();
   }
 
   // Retrieves a [VideoPlayer] by its internal `id`.
