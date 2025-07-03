@@ -19,7 +19,7 @@ class VideoPlayerPluginHls extends VideoPlayerPlatform {
   /// Registers this class as the default instance of [VideoPlayerPlatform].
   static void registerWith(Registrar registrar) {
     final userAgent = web.window.navigator.userAgent.toString().toLowerCase();
-    if(kIsWeb && !userAgent.contains("chrome")) return;
+    if(kIsWeb && !userAgent.contains("chrome") && !userAgent.contains("android")) return;
     VideoPlayerPlatform.instance = VideoPlayerPluginHls();
   }
 
