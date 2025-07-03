@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:js_interop';
+import 'dart:html' as html;
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -324,7 +325,7 @@ class VideoPlayer {
     );
   }
 
-  Future<void> enterFullScreen(bool isEnter) async {
+  Future<void> enterFullScreen() async {
     _videoElement.requestFullscreen();
   }
 
@@ -375,9 +376,16 @@ class VideoPlayer {
   }
 
   Future<bool> shouldUseHlsLibrary() async {
+    if(isAndroid()) return true;
+    
     return isSupported() &&
         (uri.toString().contains('m3u8') || await _testIfM3u8()) &&
         !canPlayHlsNatively();
+  }
+
+  bool isAndroid() {
+    final userAgent = html.window.navigator.userAgent.toString().toLowerCase();
+    return userAgent.contains("android") || userAgent.contains("Chrome");
   }
 
   Future<bool> _testIfM3u8() async {
