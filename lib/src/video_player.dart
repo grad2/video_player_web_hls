@@ -385,7 +385,7 @@ class VideoPlayer {
 
   bool isAndroid() {
     final userAgent = html.window.navigator.userAgent.toString().toLowerCase();
-    return userAgent.contains("android") || userAgent.contains("Chrome");
+    return userAgent.contains("android");
   }
 
   Future<bool> _testIfM3u8() async {
