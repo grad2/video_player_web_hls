@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:video_player_platform_interface/video_player_platform_interface.dart';
 import 'package:web/web.dart' as web;
-
+import 'package:flutter/foundation.dart';
 import 'src/video_player.dart';
 
 /// The web implementation of [VideoPlayerPlatform].
@@ -18,6 +18,8 @@ import 'src/video_player.dart';
 class VideoPlayerPluginHls extends VideoPlayerPlatform {
   /// Registers this class as the default instance of [VideoPlayerPlatform].
   static void registerWith(Registrar registrar) {
+    final userAgent = web.window.navigator.userAgent.toString().toLowerCase();
+    if(kIsWeb && !userAgent.contains("chrome")) return;
     VideoPlayerPlatform.instance = VideoPlayerPluginHls();
   }
 
