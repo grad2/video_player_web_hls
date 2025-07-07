@@ -161,6 +161,13 @@ class VideoPlayer {
       _sendBufferingRangesUpdate();
     }));
 
+    _eventsSubscriptions.add(_videoElement.onFullscreenChange.listen((dynamic _) {
+      setBuffering(true);
+      _sendChangeFullScreenUpdate();
+    }));
+
+    
+
     // The error event fires when some form of error occurs while attempting to load or perform the media.
     _eventsSubscriptions.add(_videoElement.onError.listen((web.Event _) {
       // The Event itself (_) doesn't contain info about the actual error.
@@ -350,6 +357,12 @@ class VideoPlayer {
     _eventController.add(VideoEvent(
       buffered: _toDurationRange(_videoElement.buffered),
       eventType: VideoEventType.bufferingUpdate,
+    ));
+  }
+
+  void _sendChangeFullScreenUpdate() {
+    _eventController.add(VideoEvent(
+      eventType: VideoEventType.changeFullScreen,
     ));
   }
 
