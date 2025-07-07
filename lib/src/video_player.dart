@@ -161,10 +161,11 @@ class VideoPlayer {
       _sendBufferingRangesUpdate();
     }));
 
-    _eventsSubscriptions.add(_videoElement.onFullscreenChange.listen((dynamic _) {
-      setBuffering(true);
+    _videoElement.addEventListener("fullscreenchange", (web.Event a) {
+      setBuffering(false);
       _sendChangeFullScreenUpdate();
-    }));
+    }.toJS);
+    
 
     
 
